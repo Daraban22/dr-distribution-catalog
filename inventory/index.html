@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src https://qcxbixenexjycgzfiynp.supabase.co; form-action 'none'; base-uri 'none'">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Inventory entry</title>
+  <script src="frame-guard.js"></script>
+  <link rel="stylesheet" href="inventory.css">
+</head>
+<body>
+  <header>
+    <p class="kicker">DR Distribution</p>
+    <h1>Inventory entry</h1>
+  </header>
+  <main id="app" hidden>
+    <p class="muted">Records are kept in the DR Distribution database. The public catalog is separate and does not show these quantities.</p>
+    <div class="row">
+      <span class="muted" id="who"></span>
+      <button type="button" id="logout">Sign out</button>
+      <button type="button" id="export">Download backup</button>
+    </div>
+    <form id="editor" class="panel" novalidate>
+      <input type="hidden" id="item-id">
+      <label for="name">Item name</label>
+      <input id="name" required maxlength="200">
+      <label for="sku">SKU, if you have one</label>
+      <input id="sku" maxlength="64">
+      <label for="quantity">Quantity</label>
+      <input id="quantity" required inputmode="numeric" pattern="[0-9]+">
+      <label for="unit">Unit</label>
+      <input id="unit" required maxlength="40" placeholder="case, each, roll">
+      <label for="notes">Notes</label>
+      <textarea id="notes" maxlength="2000" rows="3"></textarea>
+      <p class="row"><button type="submit">Save record</button> <button type="button" id="reset">Clear form</button> <button type="button" id="delete" class="danger" hidden>Delete record</button></p>
+      <p id="form-error" class="error" role="alert"></p>
+    </form>
+    <form id="restore" class="panel" novalidate>
+      <label for="restore-file">Restore from a backup file</label>
+      <input id="restore-file" type="file" accept="application/json,.json">
+      <p class="muted">This replaces the inventory records with the item list in that file. It does not restore accounts or passwords. An empty file is refused.</p>
+      <p><button type="submit">Restore records</button></p>
+      <p id="restore-error" class="error" role="alert"></p>
+    </form>
+    <label for="search">Search records</label>
+    <input id="search" placeholder="Name, SKU, unit, or notes">
+    <div id="list"></div>
+    <h2>Change history</h2>
+    <div id="audit"></div>
+  </main>
+  <main id="gate"><p>Checking sign-in…</p></main>
+  <script src="vendor/supabase.js"></script>
+  <script type="module" src="inventory.js"></script>
+</body>
+</html>

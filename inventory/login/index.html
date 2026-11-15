@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src https://qcxbixenexjycgzfiynp.supabase.co; form-action 'none'; base-uri 'none'">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Inventory entry</title>
+  <script src="../frame-guard.js"></script>
+  <link rel="stylesheet" href="../inventory.css">
+</head>
+<body>
+  <header>
+    <p class="kicker">DR Distribution</p>
+    <h1>Inventory entry</h1>
+  </header>
+  <main>
+    <p>Staff sign-in. This page does not create accounts. There is no public signup; the owner adds staff outside this website.</p>
+    <form id="login" novalidate>
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" autocomplete="username" required maxlength="254">
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" autocomplete="current-password" required maxlength="200">
+      <p><button type="submit" id="submit">Sign in</button></p>
+      <p id="login-error" class="error" role="alert"></p>
+    </form>
+    <p><a href="../../">Back to the product selection</a></p>
+  </main>
+  <script src="../vendor/supabase.js"></script>
+  <script type="module" src="../login.js"></script>
+</body>
+</html>
